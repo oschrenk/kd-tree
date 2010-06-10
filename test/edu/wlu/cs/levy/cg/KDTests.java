@@ -3,9 +3,13 @@ package edu.wlu.cs.levy.cg;
 /*
  written by MSL for SpeedDate
  */
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class KDTests {
@@ -36,11 +40,11 @@ public class KDTests {
 		nnl.insert("D", 0.0);
 		nnl.insert("C", 1.0);
 
-		Assert.assertEquals(2.0, nnl.getMaxPriority(), 0.1);
-		Assert.assertEquals("B", nnl.getHighest());
-		Assert.assertEquals("B", nnl.removeHighest());
-		Assert.assertEquals("C", nnl.removeHighest());
-		Assert.assertEquals("D", nnl.removeHighest());
+		assertEquals(2.0, nnl.getMaxPriority(), 0.1);
+		assertEquals("B", nnl.getHighest());
+		assertEquals("B", nnl.removeHighest());
+		assertEquals("C", nnl.removeHighest());
+		assertEquals("D", nnl.removeHighest());
 	}
 
 	@Test
@@ -74,9 +78,9 @@ public class KDTests {
 			}
 		});
 
-		Assert.assertEquals(1, nbrs.size());
+		assertEquals(1, nbrs.size());
 		if (nbrs.size() == 1) {
-			Assert.assertEquals(min_index, nbrs.get(0).intValue());
+			assertEquals(min_index, nbrs.get(0).intValue());
 		}
 	}
 
@@ -96,11 +100,11 @@ public class KDTests {
 		double[] upper = { 0.7, 0.6 };
 
 		List<Object> rv = kt.range(lower, upper);
-		Assert.assertEquals(2, rv.size());
+		assertEquals(2, rv.size());
 
 		kt.delete(p1);
 		rv = kt.range(lower, upper);
-		Assert.assertEquals(1, rv.size());
+		assertEquals(1, rv.size());
 	}
 
 	@Test
@@ -118,11 +122,11 @@ public class KDTests {
 		}
 
 		Object found = kt.search(targ);
-		Assert.assertSame(treasure, found);
+		assertSame(treasure, found);
 
 		kt.delete(targ);
 		found = kt.search(targ);
-		Assert.assertNull(found);
+		assertNull(found);
 
 	}
 
@@ -135,12 +139,12 @@ public class KDTests {
 		kt.delete(targ);
 		try {
 			kt.delete(targ);
-			Assert.assertFalse(true);
+			assertFalse(true);
 		} catch (edu.wlu.cs.levy.cg.KeyMissingException e) {
 			// supposed to be here
 		}
 		kt.delete(targ, true);
-		Assert.assertEquals(0, kt.size());
+		assertEquals(0, kt.size());
 	}
 
 	@Test
@@ -154,16 +158,16 @@ public class KDTests {
 		kt.insert(targ, p1);
 		try {
 			kt.insert(targ, p2);
-			Assert.assertFalse(true);
+			assertFalse(true);
 		} catch (edu.wlu.cs.levy.cg.KeyDuplicateException e) {
 			// supposed to be here
 		}
 
 		kt.edit(targ, new Editor.OptionalInserter<Object>(p2));
 		Object found = kt.search(targ);
-		Assert.assertSame(p1, found);
+		assertSame(p1, found);
 		kt.edit(targ, new Editor.Replacer<Object>(p2));
 		found = kt.search(targ);
-		Assert.assertSame(p2, found);
+		assertSame(p2, found);
 	}
 }
