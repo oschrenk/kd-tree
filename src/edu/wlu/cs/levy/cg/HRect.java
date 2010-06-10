@@ -18,11 +18,6 @@ class HRect {
 		max = (HPoint) vmax.clone();
 	}
 
-	protected Object clone() {
-
-		return new HRect(min, max);
-	}
-
 	// from Moore's eqn. 6.6
 	protected HPoint closest(HPoint t) {
 
@@ -83,7 +78,14 @@ class HRect {
 		return a;
 	}
 
-	public String toString() {
-		return min + "\n" + max + "\n";
+	@Override
+	protected Object clone() {
+		return new HRect(min, max);
 	}
+
+	@Override
+	public String toString() {
+		return "HRect [max=" + max + ", min=" + min + "]";
+	}
+
 }
