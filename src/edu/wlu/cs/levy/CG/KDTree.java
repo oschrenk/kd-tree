@@ -1,7 +1,7 @@
 package edu.wlu.cs.levy.CG;
 
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**

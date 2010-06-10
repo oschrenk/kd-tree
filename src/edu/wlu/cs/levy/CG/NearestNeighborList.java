@@ -1,6 +1,5 @@
 package edu.wlu.cs.levy.CG;
 
-import java.util.*;
 
 // Bjoern Heckel's solution to the KD-Tree n-nearest-neighbor problem
 

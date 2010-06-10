@@ -5,9 +5,8 @@ package edu.wlu.cs.levy.CG;
  */
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.Ignore;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class KDTests {
 	static java.util.Random rand = new java.util.Random();
