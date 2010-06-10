@@ -1,4 +1,4 @@
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 /*
  written by MSL for SpeedDate
@@ -136,7 +136,7 @@ public class KDTests {
 		try {
 			kt.delete(targ);
 			Assert.assertFalse(true);
-		} catch (edu.wlu.cs.levy.CG.KeyMissingException e) {
+		} catch (edu.wlu.cs.levy.cg.KeyMissingException e) {
 			// supposed to be here
 		}
 		kt.delete(targ, true);
@@ -155,7 +155,7 @@ public class KDTests {
 		try {
 			kt.insert(targ, p2);
 			Assert.assertFalse(true);
-		} catch (edu.wlu.cs.levy.CG.KeyDuplicateException e) {
+		} catch (edu.wlu.cs.levy.cg.KeyDuplicateException e) {
 			// supposed to be here
 		}
 

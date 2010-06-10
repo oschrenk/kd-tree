@@ -1,4 +1,4 @@
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 public interface Editor<T> {
 	public T edit(T current) throws KeyDuplicateException;

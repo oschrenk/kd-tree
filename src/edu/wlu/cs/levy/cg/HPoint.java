@@ -1,6 +1,6 @@
 // Hyper-Point class supporting KDTree class
 
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 class HPoint {
 

@@ -1,6 +1,6 @@
 // Hamming distance metric class
 
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 class HammingDistance extends DistanceMetric {
 

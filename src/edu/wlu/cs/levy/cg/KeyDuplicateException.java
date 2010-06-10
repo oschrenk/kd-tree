@@ -1,4 +1,4 @@
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 /**
  * KeyDuplicateException is thrown when the <TT>KDTree.insert</TT> method is

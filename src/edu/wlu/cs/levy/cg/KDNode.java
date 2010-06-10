@@ -1,4 +1,4 @@
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 import java.util.List;
 

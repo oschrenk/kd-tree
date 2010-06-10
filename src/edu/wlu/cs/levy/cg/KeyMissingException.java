@@ -1,6 +1,6 @@
 // Key-size mismatch exception supporting KDTree class
 
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 public class KeyMissingException extends KDException { /* made public by MSL */
 

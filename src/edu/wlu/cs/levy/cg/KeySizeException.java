@@ -1,4 +1,4 @@
-package edu.wlu.cs.levy.CG;
+package edu.wlu.cs.levy.cg;
 
 /**
  * KeySizeException is thrown when a KDTree method is invoked on a key whose
