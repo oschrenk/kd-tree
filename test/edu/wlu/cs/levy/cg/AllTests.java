@@ -5,8 +5,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  HammingDistanceTest.class,
-  KDTreeTest.class
+	HammingDistanceTest.class,
+	KDTreeTest.class,
+	NearestNeighborListTest.class
 })
 
 public class AllTests {
