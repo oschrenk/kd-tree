@@ -34,8 +34,7 @@ class HPoint {
 	}
 
 	protected static double sqrdist(HPoint x, HPoint y) {
-
-		return EuclideanDistance.sqrdist(x.coord, y.coord);
+		return EuclideanDistance.squaredDistance(x.coord, y.coord);
 	}
 
 	public String toString() {

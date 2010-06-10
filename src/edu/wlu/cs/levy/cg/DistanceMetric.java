@@ -1,8 +1,6 @@
-// Abstract distance metric class
-
 package edu.wlu.cs.levy.cg;
 
-abstract class DistanceMetric {
+interface DistanceMetric {
 
-	protected abstract double distance(double[] a, double[] b);
+	double distance(double[] a, double[] b);
 }

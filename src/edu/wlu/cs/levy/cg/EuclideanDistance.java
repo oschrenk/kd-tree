@@ -2,23 +2,18 @@
 
 package edu.wlu.cs.levy.cg;
 
-class EuclideanDistance extends DistanceMetric {
+public class EuclideanDistance implements DistanceMetric {
 
-	protected double distance(double[] a, double[] b) {
-
-		return Math.sqrt(sqrdist(a, b));
-
+	public double distance(double[] a, double[] b) {
+		return Math.sqrt(squaredDistance(a, b));
 	}
 
-	protected static double sqrdist(double[] a, double[] b) {
-
+	protected static double squaredDistance(double[] a, double[] b) {
 		double dist = 0;
-
 		for (int i = 0; i < a.length; ++i) {
 			double diff = (a[i] - b[i]);
 			dist += diff * diff;
 		}
-
 		return dist;
 	}
 }

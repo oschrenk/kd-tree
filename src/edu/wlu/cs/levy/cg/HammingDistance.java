@@ -2,9 +2,9 @@
 
 package edu.wlu.cs.levy.cg;
 
-class HammingDistance extends DistanceMetric {
+public class HammingDistance implements DistanceMetric {
 
-	protected double distance(double[] a, double[] b) {
+	public double distance(double[] a, double[] b) {
 
 		double dist = 0;
 
