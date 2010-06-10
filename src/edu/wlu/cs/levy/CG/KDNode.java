@@ -248,14 +248,4 @@ class KDNode<T> {
 		return s;
 	}
 
-	private static void hrcopy(HRect hr_src, HRect hr_dst) {
-		hpcopy(hr_src.min, hr_dst.min);
-		hpcopy(hr_src.max, hr_dst.max);
-	}
-
-	private static void hpcopy(HPoint hp_src, HPoint hp_dst) {
-		for (int i = 0; i < hp_dst.coord.length; ++i) {
-			hp_dst.coord[i] = hp_src.coord[i];
-		}
-	}
 }
