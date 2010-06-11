@@ -1,6 +1,5 @@
 package edu.wlu.cs.levy.cg;
 
-
 // Bjoern Heckel's solution to the KD-Tree n-nearest-neighbor problem
 
 class NearestNeighborList<T> {
