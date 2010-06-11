@@ -29,7 +29,7 @@ class NearestNeighborList<T> {
 	}
 
 	public double getMaxPriority() {
-		NeighborEntry p = m_Queue.peek();
+		NeighborEntry<T> p = m_Queue.peek();
 		return (p == null) ? Double.POSITIVE_INFINITY : p.value;
 	}
 
