@@ -1,13 +1,12 @@
 package edu.wlu.cs.levy.cg;
 
-/*
- written by MSL for SpeedDate
- */
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -154,5 +153,40 @@ public class KDTreeTest {
 		kt.edit(targ, new Editor.Replacer<Object>(p2));
 		found = kt.search(targ);
 		assertSame(p2, found);
+	}
+
+	static List<double[]> sampleData() {
+		List<double[]> l = new ArrayList<double[]>();
+
+		l.add(new double[] { 1.0, 2.0 });
+		l.add(new double[] { 1.0, 2.5 });
+		l.add(new double[] { 1.0, 3.0 });
+		l.add(new double[] { 1.0, 3.5 });
+		l.add(new double[] { 1.0, 4.0 });
+
+		l.add(new double[] { 0.5, 2.0 });
+		l.add(new double[] { 0.5, 2.5 });
+		l.add(new double[] { 0.5, 3.0 });
+		l.add(new double[] { 0.5, 3.5 });
+		l.add(new double[] { 0.5, 4.0 });
+
+		return l;
+	}
+
+	@Test
+	public void testNearestNeighborWithSampleData() throws KDException {
+		int dimensions = 2;
+		KDTree<Long> tree = new KDTree<Long>(dimensions);
+		List<double[]> sampleData = sampleData();
+		long i = 0;
+		for (double[] doubles : sampleData) {
+			tree.insert(doubles, ++i);
+		}
+
+		List<Long> nbrs = tree.nearest(new double[] { 1.0, 2.0 }, 2);
+
+		assertArrayEquals(new Long[] { 6l, 1l }, nbrs.toArray(new Long[nbrs
+				.size()]));
+
 	}
 }
