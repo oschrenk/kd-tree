@@ -2,3 +2,6 @@ bin
 build
 dist
 target
+.settings
+.classpath
+.project
