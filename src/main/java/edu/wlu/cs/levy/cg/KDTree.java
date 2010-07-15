@@ -24,13 +24,13 @@ import java.util.Stack;
  * 
  * <PRE>
  * &#064;techreport{AndrewMooreNearestNeighbor,
- *   author  = {Andrew Moore},
- *   title   = {An introductory tutorial on kd-trees},
- *   institution = {Robotics Institute, Carnegie Mellon University},
- *   year    = {1991},
- *   number  = {Technical Report No. 209, Computer Laboratory, 
- *              University of Cambridge},
- *   address = {Pittsburgh, PA}
+ * author = {Andrew Moore},
+ * title = {An introductory tutorial on kd-trees},
+ * institution = {Robotics Institute, Carnegie Mellon University},
+ * year = {1991},
+ * number = {Technical Report No. 209, Computer Laboratory,
+ * University of Cambridge},
+ * address = {Pittsburgh, PA}
  * }
  * </PRE>
  * 
@@ -72,12 +72,12 @@ public class KDTree<T> {
 	 * Insert a node in a KD-tree. Uses algorithm translated from 352.ins.c of
 	 * 
 	 * <PRE>
-	 *   &#064;Book{GonnetBaezaYates1991,                                   
-	 *     author =    {G.H. Gonnet and R. Baeza-Yates},
-	 *     title =     {Handbook of Algorithms and Data Structures},
-	 *     publisher = {Addison-Wesley},
-	 *     year =      {1991}
-	 *   }
+	 * &#064;Book{GonnetBaezaYates1991,
+	 * author = {G.H. Gonnet and R. Baeza-Yates},
+	 * title = {Handbook of Algorithms and Data Structures},
+	 * publisher = {Addison-Wesley},
+	 * year = {1991}
+	 * }
 	 * </PRE>
 	 * 
 	 * @param key
@@ -225,45 +225,6 @@ public class KDTree<T> {
 	}
 
 	/**
-	 * Find KD-tree nodes whose keys are within a given Euclidean distance of a
-	 * given key.
-	 * 
-	 * @param key
-	 *            key for KD-tree node
-	 * @param d
-	 *            Euclidean distance
-	 * 
-	 * @return objects at nodes with distance of key, or null on failure
-	 * 
-	 * @throws KeySizeException
-	 *             if key.length mismatches K
-	 */
-	public List<T> nearestEuclidean(double[] key, double dist)
-			throws KeySizeException {
-		return nearestDistance(key, dist, new EuclideanDistance());
-	}
-
-	/**
-	 * Find KD-tree nodes whose keys are within a given Hamming distance of a
-	 * given key.
-	 * 
-	 * @param key
-	 *            key for KD-tree node
-	 * @param d
-	 *            Hamming distance
-	 * 
-	 * @return objects at nodes with distance of key, or null on failure
-	 * 
-	 * @throws KeySizeException
-	 *             if key.length mismatches K
-	 */
-	public List<T> nearestHamming(double[] key, double dist)
-			throws KeySizeException {
-
-		return nearestDistance(key, dist, new HammingDistance());
-	}
-
-	/**
 	 * Find KD-tree nodes whose keys are <I>n</I> nearest neighbors to key. Uses
 	 * algorithm above. Neighbors are returned in ascending order of distance to
 	 * key.
@@ -377,7 +338,22 @@ public class KDTree<T> {
 
 	}
 
-	private List<T> nearestDistance(double[] key, double dist,
+	/**
+	 * Find KD-tree nodes whose keys are within a given the given distance of a
+	 * given key.
+	 * 
+	 * @param key
+	 *            key for KD-tree node
+	 * @param dist
+	 *            the distance
+	 * @param metric
+	 *            the distiance metric
+	 * @return objects at nodes with distance of key, or null on failure
+	 * 
+	 * @throws KeySizeException
+	 *             if key.length mismatches K
+	 */
+	public List<T> nearestDistance(double[] key, double dist,
 			DistanceMetric metric) throws KeySizeException {
 
 		NearestNeighborList<KDNode<T>> nnl = getnbrs(key);
