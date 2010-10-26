@@ -109,7 +109,7 @@ class KDNode<T> {
 	// Method Nearest Neighbor from Andrew Moore's thesis. Numbered
 	// comments are direct quotes from there. NearestNeighborList solution
 	// courtesy of Bjoern Heckel.
-	protected static <T> void nnbr(KDNode<T> kd, HPoint target, HRect hr,
+	static <T> void nnbr(KDNode<T> kd, HPoint target, HRect hr,
 			double max_dist_sqd, int lev, int K,
 			NearestNeighborList<KDNode<T>> nnl, Checker<T> checker, long timeout) {
 
@@ -126,7 +126,7 @@ class KDNode<T> {
 
 		// 3. pivot := dom-elt field of kd
 		HPoint pivot = kd.k;
-		double pivot_to_target = HPoint.sqrdist(pivot, target);
+		double pivot_to_target = EuclideanDistance.squaredDistance(pivot.coord, target.coord);
 
 		// 4. Cut hr into to sub-hyperrectangles left-hr and right-hr.
 		// The cut plane is through pivot and perpendicular to the s
@@ -170,7 +170,8 @@ class KDNode<T> {
 		nnbr(nearer_kd, target, nearer_hr, max_dist_sqd, lev + 1, K, nnl,
 				checker, timeout);
 
-		KDNode<T> nearest = nnl.getHighest();
+		// followinng line commented out on purpose; was in original code but does nothing, also see 10.1.1
+		// KDNode<T> nearest = nnl.getHighest();
 		double dist_sqd;
 
 		if (!nnl.isCapacityReached()) {
@@ -186,13 +187,14 @@ class KDNode<T> {
 		// part of further-hr within distance max-dist-sqd of
 		// target.
 		HPoint closest = further_hr.closest(target);
-		if (HPoint.sqrdist(closest, target) < max_dist_sqd) {
+		if (EuclideanDistance.squaredDistance(closest.coord, target.coord) < max_dist_sqd) {
 
 			// 10.1 if (pivot-target)^2 < dist-sqd then
 			if (pivot_to_target < dist_sqd) {
 
 				// 10.1.1 nearest := (pivot, range-elt field of kd)
-				nearest = kd;
+				// followinng line commented out on purpose; was in original code but does nothing
+				// nearest = kd;
 
 				// 10.1.2 dist-sqd = (pivot-target)^2
 				dist_sqd = pivot_to_target;
