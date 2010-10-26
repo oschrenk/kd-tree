@@ -201,9 +201,7 @@ public class KDTree<T> {
 	 *             if key.length mismatches K
 	 */
 	public T nearest(double[] key) throws KeySizeException {
-
-		List<T> nbrs = nearest(key, 1, null);
-		return nbrs.get(0);
+		return nearest(key, 1, null).get(0);
 	}
 
 	/**
@@ -250,7 +248,7 @@ public class KDTree<T> {
 			return new LinkedList<T>();
 		}
 
-		NearestNeighborList<KDNode<T>> nnl = getnbrs(key, n, checker);
+		NearestNeighborList<KDNode<T>> nnl = getNeighbors(key, n, checker);
 
 		n = nnl.getSize();
 		Stack<T> nbrs = new Stack<T>();
@@ -299,20 +297,16 @@ public class KDTree<T> {
 		}
 	}
 
-	public int size() { /* added by MSL */
+	public int size() {
 		return m_count;
 	}
 
-	public String toString() {
-		return m_root.toString(0);
-	}
-
-	private NearestNeighborList<KDNode<T>> getnbrs(double[] key)
+	private NearestNeighborList<KDNode<T>> getNeighbors(double[] key)
 			throws KeySizeException {
-		return getnbrs(key, m_count, null);
+		return getNeighbors(key, m_count, null);
 	}
 
-	private NearestNeighborList<KDNode<T>> getnbrs(double[] key, int n,
+	private NearestNeighborList<KDNode<T>> getNeighbors(double[] key, int n,
 			Checker<T> checker) throws KeySizeException {
 
 		if (key.length != m_K) {
@@ -328,10 +322,10 @@ public class KDTree<T> {
 		HPoint keyp = new HPoint(key);
 
 		if (m_count > 0) {
-			long timeout = (this.m_timeout > 0) ? (System.currentTimeMillis() + this.m_timeout)
+			long absoluteTimeout = (this.m_timeout > 0) ? (System.currentTimeMillis() + this.m_timeout)
 					: 0;
 			KDNode.nnbr(m_root, keyp, hr, max_dist_sqd, 0, m_K, nnl, checker,
-					timeout);
+					absoluteTimeout);
 		}
 
 		return nnl;
@@ -356,19 +350,18 @@ public class KDTree<T> {
 	public List<T> nearestDistance(double[] key, double dist,
 			DistanceMetric metric) throws KeySizeException {
 
-		NearestNeighborList<KDNode<T>> nnl = getnbrs(key);
-		int n = nnl.getSize();
-		Stack<T> nbrs = new Stack<T>();
+		NearestNeighborList<KDNode<T>> nearestNeighborList = getNeighbors(key);
+		int n = nearestNeighborList.getSize();
+		Stack<T> neighbors = new Stack<T>();
 
 		for (int i = 0; i < n; ++i) {
-			KDNode<T> kd = nnl.removeHighest();
-			HPoint p = kd.k;
+			KDNode<T> kd = nearestNeighborList.removeHighest();
 			if (metric.distance(kd.k.coord, key) < dist) {
-				nbrs.push(kd.v);
+				neighbors.push(kd.v);
 			}
 		}
 
-		return nbrs;
+		return neighbors;
 	}
 
 }
